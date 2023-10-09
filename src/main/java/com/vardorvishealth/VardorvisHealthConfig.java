@@ -1,16 +1,16 @@
-package com.example;
+package com.vardorvishealth;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup("example")
-public interface ExampleConfig extends Config
+public interface VardorvisHealthConfig extends Config
 {
 	@ConfigItem(
 		keyName = "greeting",
 		name = "Welcome Greeting",
-		description = "The message to show to the user when they login"
+		description = "yup"
 	)
 	default String greeting()
 	{
