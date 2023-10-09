@@ -4,11 +4,10 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-import javax.swing.*;
 
-import static java.awt.AWTEventMulticaster.add;
 
-@ConfigGroup("Vardorvis Heal Tracker")
+
+@ConfigGroup("Vardorvis Health Tracker")
 public interface VardorvisHealthConfig extends Config
 {
 	@ConfigItem(
@@ -16,10 +15,10 @@ public interface VardorvisHealthConfig extends Config
 			name = "Show Overlay",
 			description = "Configures whether or not the overlay is displayed"
 	)
-	default boolean showOverlay()
-	{
+	default boolean showOverlay() {
 		return true;
 	}
+
 
 
 }

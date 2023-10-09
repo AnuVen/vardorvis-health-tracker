@@ -1,11 +1,10 @@
 package com.vardorvishealth;
-
-
 import net.runelite.client.ui.overlay.OverlayPanel;
-import net.runelite.client.ui.overlay.OverlayUtil;
-
+import net.runelite.client.ui.overlay.components.LineComponent;
+import net.runelite.client.util.QuantityFormatter;
 import javax.inject.Inject;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
 
 public class VardorvisHealTrackerOverlay extends OverlayPanel {
     private final VardorvisHealTrackerPlugin plugin;
@@ -16,17 +15,27 @@ public class VardorvisHealTrackerOverlay extends OverlayPanel {
 
     }
 
+    @Inject
+    private VardorvisHealthConfig config;
+
+
     @Override
     public Dimension render(Graphics2D graphics) {
-        String text = "Total Healing: " + plugin.getTotalHealing();
-        net.runelite.api.Point location = new net.runelite.api.Point(10, 10);  // net.runelite.api.Point
-        OverlayUtil.renderTextLocation(graphics,
-                location,
-                text,
-                Color.WHITE);
-        return null;
+
+        if ((plugin.getTotalHealing()==0) || !config.showOverlay()) {
+            return null;
+        }
+
+        String left = "Total Healing:";
+        String right = QuantityFormatter.formatNumber(plugin.getTotalHealing());
+        panelComponent.getChildren().add(
+                LineComponent.builder()
+                        .left(left)
+                        .right(right)
+                        .build());
+
+
+        return super.render(graphics);
     }
-
-
 }
 
